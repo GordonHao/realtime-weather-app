@@ -24,7 +24,7 @@ const StyledLabel = styled.label`
   margin-bottom: 15px;
 `;
 
-const StyledInputList = styled.input`
+const StyledInputList = styled.select`
   display: block;
   box-sizing: border-box;
   background: transparent;
@@ -123,19 +123,19 @@ const WeatherSetting = (props) => {
             <Title>設定</Title>
             <StyledLabel htmlFor='location'>地區</StyledLabel>
             <StyledInputList
-              list='location-list' 
               id='location' 
               name='location' 
               onChange={handleChange}
-              // ref={inputLocationRef}
               value={locationName}
-            />
-            <datalist id='location-list'>
-                {/* 定義 datalist 中的 option */
-                    _.map(locations, location => (<option value={location} key={location} />))
-                }
-            </datalist>
-            
+            >
+              {/* 定義 datalist 中的 option */
+                  _.map(locations, location => (
+                    <option value={location} key={location}>
+                      {location}
+                    </option>
+                  ))
+              }
+            </StyledInputList>
 
             <ButtonGroup>
                 <Back onClick={() => setCurrentPage('WeatherCard')}>返回</Back>
